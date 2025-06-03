@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi tiết tin - News Aggregator</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">NewsCrawler</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav2"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav2">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Trang chủ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Danh mục</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-5 flex-grow-1">
+    <div id="detail-loading" class="d-flex justify-content-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div id="detail-content" class="d-none">
+      <h1 id="detail-title" class="mb-3"></h1>
+      <p class="text-muted" id="detail-meta"></p>
+      <img id="detail-image" src="" alt="Ảnh tin" class="img-fluid mb-4" />
+      <div id="detail-body"></div>
+      <div class="mt-5">
+        <a href="index.html" class="btn btn-secondary">← Quay lại Trang chủ</a>
+      </div>
+    </div>
+  </main>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const detailLoadingEl = document.getElementById('detail-loading');
+      const detailContentEl = document.getElementById('detail-content');
+      const titleEl = document.getElementById('detail-title');
+      const metaEl = document.getElementById('detail-meta');
+      const imageEl = document.getElementById('detail-image');
+      const bodyEl = document.getElementById('detail-body');
+
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      const newsId = getQueryParam('id');
+
+      if (!newsId) {
+        detailLoadingEl.innerHTML = '<p class="text-danger">Không xác định được ID tin.</p>';
+        return;
+      }
+
+      fetch('./data/dummy-news.json')
+        .then((res) => res.json())
+        .then((arr) => {
+          const newsItem = arr.find((n) => n.id === Number(newsId));
+          if (!newsItem) {
+            detailLoadingEl.innerHTML = '<p class="text-danger">Không tìm thấy tin.</p>';
+            return;
+          }
+
+          titleEl.textContent = newsItem.title;
+          metaEl.textContent = `${newsItem.publish_date} | ${newsItem.source}`;
+          imageEl.src = newsItem.image_url;
+          imageEl.alt = newsItem.title;
+
+          if (newsItem.content) {
+            bodyEl.innerHTML = newsItem.content;
+          } else {
+            bodyEl.innerHTML = `<p>${newsItem.description}</p>
+              <p>Nội dung chi tiết sẽ được cập nhật khi Backend sẵn sàng.</p>`;
+          }
+
+          detailLoadingEl.classList.add('d-none');
+          detailContentEl.classList.remove('d-none');
+        })
+        .catch((err) => {
+          console.error('Lỗi load dữ liệu chi tiết:', err);
+          detailLoadingEl.innerHTML = '<p class="text-danger">Không thể tải dữ liệu.</p>';
+        });
+    });
+  </script>
+</body>
+</html>

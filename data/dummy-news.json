@@ -1,0 +1,40 @@
+[
+    {
+      "id": 1,
+      "title": "Tin nóng hôm nay: Thị trường chứng khoán tăng vọt",
+      "description": "Thị trường chứng khoán Việt Nam ghi nhận mức tăng kỷ lục trong phiên giao dịch sáng nay, nhiều cổ phiếu blue-chip đồng loạt bứt phá...",
+      "image_url": "assets/images/news1.jpg",
+      "publish_date": "2025-06-01",
+      "source": "VNExpress",
+      "category": "kinh-te"
+    },
+    {
+      "id": 2,
+      "title": "Công nghệ 5G phủ sóng toàn quốc",
+      "description": "Nhiều nhà mạng chính thức công bố phủ sóng 5G tại các thành phố lớn, hứa hẹn mang tới tốc độ Internet di động thần tốc cho người dùng...",
+      "image_url": "assets/images/news2.jpg",
+      "publish_date": "2025-05-30",
+      "source": "Tuổi Trẻ",
+      "category": "cong-nghe"
+    },
+    {
+      "id": 3,
+      "title": "Bóng đá Việt Nam: Đội tuyển quốc gia chuẩn bị AFF Cup",
+      "description": "HLV tuyển Việt Nam đã chốt danh sách 25 cầu thủ tham dự AFF Cup 2025, trong đó có nhiều gương mặt trẻ lần đầu lên tuyển...",
+      "image_url": "assets/images/news3.jpg",
+      "publish_date": "2025-05-28",
+      "source": "Báo Thanh Niên",
+      "category": "the-thao"
+    },
+    {
+      "id": 4,
+      "title": "Giải trí: Phim điện ảnh Việt được đề cử LHP Quốc tế",
+      "description": "Bộ phim 'Ánh mắt người lạ' của đạo diễn A vừa nhận đề cử ở Liên hoan Phim Quốc tế Cannes 2025. Đây là lần thứ 2 điện ảnh Việt có tên...",
+      "image_url": "assets/images/news4.jpg",
+      "publish_date": "2025-05-27",
+      "source": "Zing News",
+      "category": "giai-tri"
+    }
+    
+]
+  
